@@ -9,7 +9,7 @@
   "author": "Matthew Herron",
   "license": "ISC",
   "dependencies": {
-    "gdax-candles": "^1.5.2",
+    "gdax-candles": "^1.5.3",
     "lodash": "^4.17.10",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
