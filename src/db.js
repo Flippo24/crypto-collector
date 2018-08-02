@@ -6,6 +6,7 @@ const sequelize = new Sequelize(config.get('db.name'), config.get('db.username')
   host: config.get('db.host'),
   dialect: 'postgres',
   operatorsAliases: false,
+  logging: true,
   pool: {
     max: 5,
     min: 0,
