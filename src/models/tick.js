@@ -1,6 +1,7 @@
 const {get} = require('lodash');
 
 module.exports.tick = (candle) => ({
+  exchange: candle.exchange,
   timestamp: candle.timestamp,
   product: candle.product,
   open: candle.open,

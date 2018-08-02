@@ -2,37 +2,21 @@ const db = require('./src/db');
 const Chart = require('gdax-candles');
 const {tick} = require('./src/models/tick');
 
-btcChart = new Chart({product: 'BTC-USD', timeframe: '5s'}).start();
-ethChart = new Chart({product: 'ETH-USD', timeframe: '5s'}).start();
-bchChart = new Chart({product: 'BCH-USD', timeframe: '5s'}).start();
-ltcChart = new Chart({product: 'LTC-USD', timeframe: '5s'}).start();
+const dataTick = db.models.get('data');
 
-const BTCTick = db.models.get('btc_usd');
-const ETHTick = db.models.get('eth_usd');
-const LTCTick = db.models.get('ltc_usd');
-const BCHTick = db.models.get('bch_usd');
+const Products = [];
 
-btcChart.on('close', candle => {
-  console.log(candle);
-  BTCTick.create(tick(candle));
-});
+function addProduct(exchange, product, timeframe) {
+  var chart = new Chart({product, timeframe}).start();
+  chart.on('close', candle => {
+    candle.exchange = exchange;
+    dataTick.create(tick(candle));
+  });
+  chart.on('error', err => console.log(err));
+  Products.push(chart);
+};
 
-ethChart.on('close', candle => {
-  console.log(candle);
-  ETHTick.create(tick(candle));
-});
-
-ltcChart.on('close', candle => {
-  console.log(candle);
-  LTCTick.create(tick(candle));
-});
-
-bchChart.on('close', candle => {
-  console.log(candle);
-  BCHTick.create(tick(candle));
-});
-
-btcChart.on('error', err => console.log(err));
-ethChart.on('error', err => console.log(err));
-bchChart.on('error', err => console.log(err));
-ltcChart.on('error', err => console.log(err));
+addProduct('gdax','BTC-USD','5s');
+addProduct('gdax','BCH-USD','5s');
+addProduct('gdax','ETH-USD','5s');
+addProduct('gdax','LTC-USD','5s');

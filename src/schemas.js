@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 
 module.exports = {
   tick: {
+    exchange: Sequelize.STRING,
     timestamp: Sequelize.DATE,
     product: Sequelize.STRING,
     open: Sequelize.REAL,

@@ -15,10 +15,7 @@ const sequelize = new Sequelize(config.get('db.name'), config.get('db.username')
 });
 
 const models = {
-  btc_usd: sequelize.define('btc_usd', tick),
-  eth_usd: sequelize.define('eth_usd', tick),
-  bch_usd: sequelize.define('bch_usd', tick),
-  ltc_usd: sequelize.define('ltc_usd', tick)
+  data: sequelize.define('data', tick)
 }
 
 Object.keys(models).forEach(model => models[model].sync({ force: false }).then(() => {
