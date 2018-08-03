@@ -9,10 +9,8 @@
   "author": "Matthew Herron",
   "license": "ISC",
   "dependencies": {
-    "gdax-candles": "^1.5.3",
-    "lodash": "^4.17.10",
-    "pg": "^7.4.3",
-    "pg-hstore": "^2.3.2",
+    "gdax": "^0.8.0",
+    "mysql2": "^1.6.1",
     "sequelize": "^4.38.0"
   }
 }

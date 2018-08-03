@@ -2,11 +2,11 @@ const {get} = require('lodash');
 
 const config = {
   db: {
-    host: 'herthamdb',
-    name: 'price_history',
-    port: 5432,
-    username: 'postgres',
-    password: ''
+    host: 'localhost',
+    name: 'mydb2',
+    port: 3306,
+    username: 'root',
+    password: 'root'
   }
 }
 
