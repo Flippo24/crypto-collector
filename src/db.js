@@ -4,9 +4,9 @@ const {tick} = require('./schemas');
 
 const sequelize = new Sequelize(config.get('db.name'), config.get('db.username'), config.get('db.password'), {
   host: config.get('db.host'),
-  dialect: 'postgres',
+  dialect: 'mysql',
   operatorsAliases: false,
-  logging: true,
+  logging: false,
   pool: {
     max: 5,
     min: 0,
@@ -20,7 +20,7 @@ const models = {
 }
 
 Object.keys(models).forEach(model => models[model].sync({ force: false }).then(() => {
-  console.log(`Relation: ${model} sync\'d to ${config.get('db.name')}`);
+  // console.log(`Relation: ${model} sync\'d to ${config.get('db.name')}`);
 }));
 
 module.exports = {
