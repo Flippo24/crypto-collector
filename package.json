@@ -1,13 +1,13 @@
 {
-  "name": "gdax-collector",
-  "version": "0.0.2",
-  "description": "A data collection app for gdax candlestick charts",
+  "name": "crypto-collector",
+  "version": "0.0.1",
+  "description": "A data collector for collecting tick data from different exchanges.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Matthew Herron",
-  "license": "ISC",
+  "author": "Flippo24",
+  "license": "MIT",
   "dependencies": {
     "gdax": "^0.8.0",
     "mysql2": "^1.6.1",
