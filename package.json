@@ -9,6 +9,7 @@
   "author": "Flippo24",
   "license": "MIT",
   "dependencies": {
+    "binance-api-node": "^0.8.3",
     "gdax": "^0.8.0",
     "mysql2": "^1.6.1",
     "sequelize": "^4.38.0"

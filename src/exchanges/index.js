@@ -17,9 +17,18 @@ const addExchange = function(name,product) {
 
 const getExchange = function(name, product) {
   try {
-    var req = require ('./'+ name +'.js');
-    var ex = new req(product);
-    return ex;
+    console.log(name);
+    try {
+      var req = require ('./'+ name +'.js');
+      var ex = new req(product);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      return ex;
+    }
+    
+    console.log('ok');
+
   } catch (ex) {
       return undefined;
   }

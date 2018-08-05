@@ -27,12 +27,16 @@ class exchange extends EventEmitter {
         this.emit('tick', tickdata);
       };
       if (e.type === 'heartbeat') {
-        clearTimeout(this.timeout);
-        this.timeout = setTimeout(function() {
-          if (!this.websocket.socket) {
+        clearInterval(this.timeout);
+        this.timeout = setInterval(function() {
+          try {
+            console.log('connect');
             this.websocket.connect();
-          };
-          this.websocket.disconnect('missing heartbeat');
+          }
+          catch (err) {
+            console.log('connect');
+            this.websocket.disconnect();
+          }
         }, 10000);
       };
     });
@@ -45,7 +49,7 @@ class exchange extends EventEmitter {
       console.log('ERROR', 'Websocket Error', `websocket closed unexpectedly with data: ${data}. Attempting to re-connect.`);
         // attempt to re-connect every 5 seconds.
       const interval = setInterval(() => {
-        if (this.websocket.socket===undefined) {
+        if (!this.websocket.socket) {
           this.websocket.connect();
         }
         else {
