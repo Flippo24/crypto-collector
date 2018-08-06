@@ -1,15 +1,15 @@
 const EventEmitter = require('events').EventEmitter;
-const Binance = require('binance-api-node').default;
+// const NameOfExchange = require('exchangeapi');
 
 class exchange extends EventEmitter {
   constructor(product) {
     super();
     this.product = product;
-    this.binance = new Binance();
-    this.binance.ws.trades(product, tick => {
+    this.NameOfExchange = new NameOfExchange();
+    this.NameOfExchange.ws.trades(product, tick => {
       if (tick.eventType==='trade') {
         const tickdata = {};
-        tickdata.exchange = 'Binance';
+        tickdata.exchange = 'NameOfExchange';
         tickdata.timestamp = new Date(tick.eventTime).valueOf();
         tickdata.product = tick.symbol;
         tickdata.price = Number(tick.price);
@@ -20,4 +20,4 @@ class exchange extends EventEmitter {
   };
 };
 
-module.exports = exchange;
+// module.exports = exchange;

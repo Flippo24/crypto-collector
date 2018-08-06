@@ -3,7 +3,7 @@ const {get} = require('lodash');
 const config = {
   db: {
     host: 'localhost',
-    name: 'mydb2',
+    name: 'Exchanges',
     port: 3306,
     username: 'root',
     password: 'root'

@@ -15,19 +15,24 @@ const sequelize = new Sequelize(config.get('db.name'), config.get('db.username')
   }
 });
 
-const models = {
-  data: sequelize.define('data', tick)
-}
+const models = {};
 
-Object.keys(models).forEach(model => models[model].sync({ force: false }).then(() => {
-  // console.log(`Relation: ${model} sync\'d to ${config.get('db.name')}`);
-}));
+const sync = function() {
+  Object.keys(models).forEach(model => models[model].sync({ force: false }).then(() => {
+    console.log(`Relation: ${model} sync\'d to ${config.get('db.name')}`);
+  }));
+};
 
 module.exports = {
   instance: sequelize,
   models: {
     get: function(name) {
       return models[name];
+    },
+    set: function(name) {
+      models[name] = sequelize.define(name, tick, {freezeTableName: true});
+      sync();
+       return models[name];
     }
   }
 };
