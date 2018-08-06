@@ -1,4 +1,3 @@
-// const util = require('util');
 const EventEmitter = require('events').EventEmitter;
 const Gdax = require('gdax');
 
@@ -6,7 +5,6 @@ class exchange extends EventEmitter {
   constructor(product) {
     super();
     this.product = product;
-    this.lastPrice = null;
     this.timeout = null;
     this.websocket = new Gdax.WebsocketClient(
       [product],
@@ -17,7 +15,6 @@ class exchange extends EventEmitter {
 
     this.websocket.on('message', (e) => {
       if (e.type === 'match') {
-        // console.log(e)
         const tickdata = {};
         tickdata.exchange = 'Gdax';
         tickdata.timestamp = new Date(e.time).valueOf();

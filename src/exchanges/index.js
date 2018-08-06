@@ -1,11 +1,11 @@
 const db = require('../../src/db');
 const {tick} = require('../../src/models/tick');
 
-const dataTick = db.models.get('data');
 const Products = [];
 
 const addExchange = function(name,product) {
   const ex = getExchange(name,product);
+  const dataTick = db.models.set(name);
   if (ex != undefined ) {
     ex.on('tick', tickdata => {
       console.log(tickdata);
@@ -20,14 +20,15 @@ const getExchange = function(name, product) {
     console.log(name);
     try {
       var req = require ('./'+ name +'.js');
+      db.instance.define(name, tick)
       var ex = new req(product);
     } catch (e) {
       console.log(e);
     } finally {
       return ex;
     }
-    
-    console.log('ok');
+
+    console.log('Exchange not found.');
 
   } catch (ex) {
       return undefined;
